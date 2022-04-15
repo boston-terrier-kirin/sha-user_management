@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 

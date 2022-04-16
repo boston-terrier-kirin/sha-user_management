@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: SigninComponent,
+    pathMatch: 'full',
   },
 ];
 

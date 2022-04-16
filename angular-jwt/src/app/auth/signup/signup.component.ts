@@ -77,6 +77,23 @@ export class SignupComponent implements OnInit {
     };
   }
 
+  getMessage() {
+    if (this.form.errors?.['unexpected']) {
+      return {
+        type: 'error',
+        text: 'Unexpected error occurred. Please try later again',
+      };
+    }
+    if (this.form.errors?.['nonUniqueUsername']) {
+      return {
+        type: 'error',
+        text: 'Username is taken',
+      };
+    }
+
+    return null;
+  }
+
   showUnExpectedError() {
     return this.form.errors?.['unexpected'];
   }

@@ -3,6 +3,12 @@
     <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
 
     <app-message
+      *ngIf="getMessage() as message"
+      [type]="message.type"
+      [message]="message.text"
+    ></app-message>
+
+    <!-- <app-message
       *ngIf="showUnExpectedError()"
       type="error"
       message="Unexpected error occurred. Please try later again."
@@ -11,7 +17,7 @@
       *ngIf="showNonUniqueUsername()"
       type="error"
       message="Username is taken."
-    ></app-message>
+    ></app-message> -->
 
     <form [formGroup]="form" (ngSubmit)="signup()">
       <div class="mb-3">
@@ -39,3 +45,5 @@
     </form>
   </div>
 </div>
+
+{{ form.errors | json }}

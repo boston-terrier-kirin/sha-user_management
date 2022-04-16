@@ -8,17 +8,6 @@
       [message]="message.text"
     ></app-message>
 
-    <!-- <app-message
-      *ngIf="showUnExpectedError()"
-      type="error"
-      message="Unexpected error occurred. Please try later again."
-    ></app-message>
-    <app-message
-      *ngIf="showNonUniqueUsername()"
-      type="error"
-      message="Username is taken."
-    ></app-message> -->
-
     <form [formGroup]="form" (ngSubmit)="signup()">
       <div class="mb-3">
         <app-input

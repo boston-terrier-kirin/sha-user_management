@@ -93,12 +93,4 @@ export class SignupComponent implements OnInit {
 
     return null;
   }
-
-  showUnExpectedError() {
-    return this.form.errors?.['unexpected'];
-  }
-
-  showNonUniqueUsername() {
-    return this.form.errors?.['nonUniqueUsername'];
-  }
 }

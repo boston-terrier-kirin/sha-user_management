@@ -1,1 +1,41 @@
-<p>signup works!</p>
+<div class="container mt-5">
+  <div class="card ms-auto me-auto p-3 shadow custom-card">
+    <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
+
+    <app-message
+      *ngIf="showUnExpectedError()"
+      type="error"
+      message="Unexpected error occurred. Please try later again."
+    ></app-message>
+    <app-message
+      *ngIf="showNonUniqueUsername()"
+      type="error"
+      message="Username is taken."
+    ></app-message>
+
+    <form [formGroup]="form" (ngSubmit)="signup()">
+      <div class="mb-3">
+        <app-input
+          [control]="controls.name"
+          placeholder="Full Name"
+        ></app-input>
+      </div>
+      <div class="mb-3">
+        <app-input
+          [control]="controls.username"
+          placeholder="Username"
+        ></app-input>
+      </div>
+      <div class="mb-3">
+        <app-input
+          [control]="controls.password"
+          placeholder="Password"
+          type="password"
+        ></app-input>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-primary">SIGNUP</button>
+      </div>
+    </form>
+  </div>
+</div>

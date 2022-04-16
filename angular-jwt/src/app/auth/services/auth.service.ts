@@ -12,15 +12,19 @@ const API_URL = `${environment.base_url}/api/authentication`;
 })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
-  currentUser$: Observable<User | null> =
+  private currentUser$: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {
+    console.log('AuthService.constructor');
+
     let storageUser;
     const storageUserAsStr = localStorage.getItem('currentUser');
     if (storageUserAsStr) {
       storageUser = JSON.parse(storageUserAsStr);
     }
+
+    console.log(storageUser);
 
     this.currentUserSubject.next(storageUser);
   }

@@ -12,7 +12,8 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
+    // AppModuleで1回importすれば良いかと思っていたけど、各Moduleでimportする必要あり。
+    // FontAwesomeModule,
     /* eager load するモジュールはここでimportが必要になる。 */
     AuthModule,
     /* 404と401があるのでここでimportが必要になる。 */

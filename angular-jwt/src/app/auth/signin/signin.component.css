@@ -1,0 +1,10 @@
+.custom-card {
+  width: 400px;
+  max-width: 100%;
+  background-color: #f8fafc;
+}
+
+.user-icon {
+  font-size: 100px;
+  color: #2563eb;
+}

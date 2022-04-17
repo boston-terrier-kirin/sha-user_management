@@ -1,1 +1,32 @@
-<p>signin works!</p>
+<div class="container mt-5">
+  <div class="card ms-auto me-auto p-3 shadow custom-card">
+    <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
+
+    <app-message
+      *ngIf="getMessage() as message"
+      [type]="message.type"
+      [message]="message.text"
+    ></app-message>
+
+    <form [formGroup]="form" (ngSubmit)="signin()">
+      <div class="mb-3">
+        <app-input
+          [control]="controls.username"
+          placeholder="Username"
+        ></app-input>
+      </div>
+      <div class="mb-3">
+        <app-input
+          [control]="controls.password"
+          placeholder="Password"
+          type="password"
+        ></app-input>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-primary" [disabled]="form.invalid">
+          SIGNIN
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

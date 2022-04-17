@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
@@ -11,26 +11,17 @@ const API_URL = `${environment.base_url}/api/authentication`;
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
-  private currentUser$: Observable<User | null> =
-    this.currentUserSubject.asObservable();
+  currentUserSubject$ = new BehaviorSubject<User | null>(null);
 
   constructor(private httpClient: HttpClient) {
-    console.log('AuthService.constructor');
-
     let storageUser;
     const storageUserAsStr = localStorage.getItem('currentUser');
     if (storageUserAsStr) {
       storageUser = JSON.parse(storageUserAsStr);
     }
 
-    console.log(storageUser);
-
-    this.currentUserSubject.next(storageUser);
-  }
-
-  get currentUser() {
-    return this.currentUserSubject.value;
+    console.log('AuthService.constructor', storageUser);
+    this.currentUserSubject$.next(storageUser);
   }
 
   signin(user: User) {
@@ -49,11 +40,11 @@ export class AuthService {
 
   signout() {
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.currentUserSubject$.next(null);
   }
 
   refreshToken() {
-    const token = this.currentUserSubject?.value?.refreshToken;
+    const token = this.currentUserSubject$?.value?.refreshToken;
     return this.httpClient.post<User>(
       `${API_URL}/refresh-token?token=${token}`,
       {}
@@ -62,6 +53,6 @@ export class AuthService {
 
   private setSessionUser(user: User) {
     localStorage.setItem('currentUser', JSON.stringify(user));
-    this.currentUserSubject.next(user);
+    this.currentUserSubject$.next(user);
   }
 }

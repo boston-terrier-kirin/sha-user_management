@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    if (this.authService.currentUser?.id) {
+    if (this.authService.currentUserSubject$?.value?.id) {
       this.router.navigateByUrl('/profile');
       return;
     }

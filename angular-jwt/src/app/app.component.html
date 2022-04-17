@@ -9,14 +9,14 @@
   </a>
 
   <div class="navbar-nav me-auto">
-    <div class="nav-item">
+    <div class="nav-item" *ngIf="isAdmin()">
       <a routerLink="/admin" routerLinkActive="active" class="nav-link"
         >Admin</a
       >
     </div>
   </div>
 
-  <div class="navbar-nav ms-auto">
+  <div class="navbar-nav ms-auto" *ngIf="!(currentUser$ | async)?.id">
     <div class="nav-item">
       <a routerLink="/signup" routerLinkActive="active" class="nav-link"
         >Signup</a
@@ -29,6 +29,19 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="nav-link"
         >Signin</a
+      >
+    </div>
+  </div>
+
+  <div class="navbar-nav ms-auto" *ngIf="currentUser$ | async as user">
+    <div class="nav-item">
+      <a routerLink="/profile" routerLinkActive="active" class="nav-link">{{
+        user.username
+      }}</a>
+    </div>
+    <div class="nav-item">
+      <a (click)="signout()" routerLinkActive="active" class="nav-link"
+        >Signout</a
       >
     </div>
   </div>

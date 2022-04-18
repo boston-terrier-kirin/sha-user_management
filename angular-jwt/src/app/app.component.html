@@ -36,7 +36,7 @@
   <div class="navbar-nav ms-auto" *ngIf="currentUser$ | async as user">
     <div class="nav-item">
       <a routerLink="/profile" routerLinkActive="active" class="nav-link">{{
-        user.username
+        user.name
       }}</a>
     </div>
     <div class="nav-item">

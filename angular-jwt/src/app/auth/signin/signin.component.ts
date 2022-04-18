@@ -26,7 +26,6 @@ export class SigninComponent implements OnInit {
 
   signin() {
     const user: User = this.form.value;
-    console.log(user);
 
     this.authService.signin(user).subscribe({
       next: () => {

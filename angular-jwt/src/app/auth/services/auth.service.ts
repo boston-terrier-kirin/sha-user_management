@@ -47,7 +47,7 @@ export class AuthService {
       id: jwt.userId,
       username: jwt.sub,
       name: storageUser.name,
-      role: jwt.roles.substring(5),
+      role: jwt.roles.substring(5), // とりあえず、ROLE_ を除外することに。
       accessToken: storageUser.accessToken,
       refreshToken: storageUser.refreshToken,
     };

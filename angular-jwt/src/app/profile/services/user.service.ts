@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { RequestBaseService } from 'src/app/shared/services/request-base.service';
 import { environment } from 'src/environments/environment';
@@ -22,5 +23,12 @@ export class UserService extends RequestBaseService {
         headers: this.getHeaders(),
       }
     );
+  }
+
+  getUser(id: number) {
+    console.log(id);
+    return this.httpClient.get<User>(`${API_URL}/${id}`, {
+      headers: this.getHeaders(),
+    });
   }
 }

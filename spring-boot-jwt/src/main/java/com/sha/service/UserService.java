@@ -14,4 +14,6 @@ public interface UserService {
     void changeRole(String username, Role role);
 
     List<User> findAllUsers();
+
+    Optional<User> findById(Long id);
 }

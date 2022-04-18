@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit {
   }
 
   detail(user: User) {
-    console.log(user);
     this.router.navigate(['/admin', user.id], { state: user });
   }
 }

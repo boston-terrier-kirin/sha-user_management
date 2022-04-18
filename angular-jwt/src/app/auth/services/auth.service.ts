@@ -14,6 +14,15 @@ export class AuthService {
   currentUserSubject$ = new BehaviorSubject<User | null>(null);
 
   constructor(private httpClient: HttpClient) {
+    /**
+     * TODO：
+     * この実装だとlocalstorageのroleを変えて、/adminに手動で遷移するとリフレッシュが走ってadminページが表示できてしまう。
+     * AppComponent.ngOnInitでチェックしなおした方が良い。
+     */
+    /**
+     * TODO：
+     * 改ざんを防ぐのであれば、tokenの中にあるroleを使わないとダメなのではないだろうか？
+     */
     let storageUser;
     const storageUserAsStr = localStorage.getItem('currentUser');
     if (storageUserAsStr) {

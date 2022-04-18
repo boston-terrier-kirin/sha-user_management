@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
+    console.log('AppComponent.ngOnInit');
+
     this.currentUser$ = this.authService.currentUserSubject$;
   }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { User } from '../models/user.model';
 
 const API_URL = `${environment.base_url}/api/authentication`;
@@ -34,8 +35,25 @@ export class AuthService {
       storageUser = JSON.parse(storageUserAsStr);
     }
 
-    console.log('AuthService.constructor', storageUser);
-    this.currentUserSubject$.next(storageUser);
+    const jwt: any = jwtDecode(storageUser.accessToken);
+    console.log(jwt);
+
+    /**
+     * TODO:
+     * SpringSecurityの都合で、ロールの前にROLE_がついているので除外する。
+     * ロールをlocalStorageに持たないようにしようとしたが、ROLE_で問題発生。
+     */
+    const userToReStore: User = {
+      id: jwt.userId,
+      username: jwt.sub,
+      name: storageUser.name,
+      role: jwt.roles.substring(5),
+      accessToken: storageUser.accessToken,
+      refreshToken: storageUser.refreshToken,
+    };
+
+    console.log('AuthService.constructor', userToReStore);
+    this.currentUserSubject$.next(userToReStore);
   }
 
   /**
@@ -74,7 +92,19 @@ export class AuthService {
   }
 
   setSessionUser(user: User) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    /**
+     * TODO:
+     * localStrageには、最低限のものだけを入れるようにする。
+     */
+    const userToStore: Partial<User> = {
+      name: user.name,
+      accessToken: user.accessToken,
+      refreshToken: user.refreshToken,
+    };
+    localStorage.setItem('currentUser', JSON.stringify(userToStore));
+
+    console.log('setSessionUser', user);
+
     this.currentUserSubject$.next(user);
   }
 }

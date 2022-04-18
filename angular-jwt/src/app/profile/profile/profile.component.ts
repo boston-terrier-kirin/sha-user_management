@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
 
     this.userService.changeRole(newRole).subscribe(() => {
       this.authService.signout();
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/');
     });
   }
 }

@@ -19,6 +19,10 @@ export class AdminComponent implements OnInit {
   }
 
   detail(user: User) {
+    /**
+     * TODO:
+     * /admin/:id ではなく、/admin からの相対パスにしたい。
+     */
     this.router.navigate(['/admin', user.id], { state: user });
   }
 }

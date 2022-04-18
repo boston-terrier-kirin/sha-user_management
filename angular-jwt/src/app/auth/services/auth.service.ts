@@ -21,7 +21,12 @@ export class AuthService {
      */
     /**
      * TODO：
-     * 改ざんを防ぐのであれば、tokenの中にあるroleを使わないとダメなのではないだろうか？
+     * 改ざんを防ぐのであれば、roleはtokenの中だけで持つようにして、tokenを変えたらJWT的にエラーになるようにする。
+     * localstrageにはjwt以外は持たないようにするのが無難。
+     */
+    /**
+     * TODO:
+     * localstrageにpasswordが入っている。サーバから戻さないようにする。
      */
     let storageUser;
     const storageUserAsStr = localStorage.getItem('currentUser');

@@ -33,6 +33,9 @@ export class AuthService {
     this.currentUserSubject$.next(storageUser);
   }
 
+  /**
+   * TODO: Patial<User>にして、Userの?を消す。
+   */
   signin(user: User) {
     return this.httpClient.post<User>(`${API_URL}/signin`, user).pipe(
       tap((user) => {
@@ -43,6 +46,9 @@ export class AuthService {
     );
   }
 
+  /**
+   * TODO: Patial<User>にして、Userの?を消す。
+   */
   signup(user: User) {
     return this.httpClient.post<User>(`${API_URL}/signup`, user);
   }

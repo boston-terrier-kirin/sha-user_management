@@ -26,7 +26,6 @@ export class UserService extends RequestBaseService {
   }
 
   getUser(id: number) {
-    console.log(id);
     return this.httpClient.get<User>(`${API_URL}/${id}`, {
       headers: this.getHeaders(),
     });

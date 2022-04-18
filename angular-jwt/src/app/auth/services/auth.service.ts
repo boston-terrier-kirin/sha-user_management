@@ -40,6 +40,7 @@ export class AuthService {
 
   /**
    * TODO: Patial<User>にして、Userの?を消す。
+   * ⇒Partialにしなくても大丈夫そう。
    */
   signin(user: User) {
     return this.httpClient.post<User>(`${API_URL}/signin`, user).pipe(
@@ -53,6 +54,7 @@ export class AuthService {
 
   /**
    * TODO: Patial<User>にして、Userの?を消す。
+   * ⇒Partialにしなくても大丈夫そう。
    */
   signup(user: User) {
     return this.httpClient.post<User>(`${API_URL}/signup`, user);

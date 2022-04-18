@@ -25,6 +25,10 @@
                 <button (click)="detail(user)" class="btn btn-primary">
                   Detail
                 </button>
+                <!-- TODO 直接リンクさせてしまえば勝手に相対パスになる。 -->
+                <a class="btn btn-link" [routerLink]="user.id.toString()"
+                  >Detail(直接リンク)</a
+                >
               </td>
             </tr>
           </tbody>

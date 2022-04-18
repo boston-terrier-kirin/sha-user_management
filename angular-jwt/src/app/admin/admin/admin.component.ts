@@ -29,6 +29,7 @@ export class AdminComponent implements OnInit {
      */
     // this.router.navigate(['/admin', user.id]);
     // これで、/adminから相対パスで、/admin/7 になる。
+    console.log('AdminComponent.detail');
     this.router.navigate([user.id], { relativeTo: this.route });
   }
 }

@@ -14,7 +14,7 @@ export abstract class RequestBaseService {
     });
   }
 
-  get getHeaders(): HttpHeaders {
+  getHeaders(): HttpHeaders {
     return new HttpHeaders({
       authorization: `Bearer ${this.currentUser?.accessToken}`,
       'Content-Type': 'application/json; charset=UTF-8',

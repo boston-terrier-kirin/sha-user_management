@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/auth/models/user.model';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
+  users$ = new Observable<User[] | null>();
 
-  constructor() { }
+  constructor(private router: Router, private adminService: AdminService) {}
 
   ngOnInit(): void {
+    this.users$ = this.adminService.findAllUsers();
   }
 
+  detail(user: User) {
+    console.log(user);
+    this.router.navigate(['/admin', user.id], { state: user });
+  }
 }
